@@ -1,0 +1,86 @@
+brain04 INITIALIZATION PROCESS
+
+pe00    ENTER CRITICAL REGION
+
+gd90        Grab sempahore initialization values
+
+lr91        Semaphore[ 01 ] := Empty
+si01
+
+lr90        Semaphore[ 02 ] := Full
+si02
+
+ve00    EXIT CRITICAL REGION
+h
+
+brain04 PRODUCER PROCESS
+
+pe00    ENTER CRITICAL REGION
+
+gd70        Retrieve Producer outputs
+gd80
+gd90
+
+ve00    EXIT CRITICAL REGION
+
+pd70        Report Producer produced new item
+
+pe01               DOWN ( Empty )
+pe00               ENTER CRITICAL REGION
+
+pd80                  Report produced item put into buffer
+
+ve00               EXIT CRITICAL REGION
+ve02               UP ( Full )
+
+lr91
+ce90
+bt18
+
+lr91
+su92
+sr91
+
+bu04    Loop back
+h
+
+brain04 CONSUMER PROCESS
+
+pe00    ENTER CRITICAL REGION
+
+gd70        Retrieve Consumer outputs
+gd80
+gd90
+
+ve00    EXIT CRITICAL REGION
+
+pe02    DOWN ( Full )
+pe00    ENTER CRITICAL REGION
+
+pd70        Remove produced item from the buffer
+
+ve00    EXIT CRITICAL REGION
+ve01    UP ( Empty )
+
+pd80    Report Consumer consumed the item
+
+lr91
+ce90
+bt18
+
+lr91
+su92
+sr91
+
+bu04    Loop back
+h
+
+data                                    data line description
+000000040001                            
+Producer produced a new item.           
+Producer put the item into the buffer.  
+000100040001                            
+Consumer took the item from the buffer. 
+Consumer consumed the new item.         
+000100040001                            
+end

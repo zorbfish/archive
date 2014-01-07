@@ -1,0 +1,95 @@
+brain04 INPUT PROCESS
+pe00  ENTER CRITICAL REGION
+gd80      Extract data for this program
+gd90
+lr80      Place shared data into shared memory
+ss00
+lr82
+sr70
+ve00  EXIT CRITICAL REGION
+
+lr70  Determine how many more input requests to service
+ce72
+bt23
+
+su83  Decrement remaining
+sr70
+
+lr80  Recieve input
+rcxx
+
+lr50  Insert process id into buffered message
+sr92
+
+lr50  Send back to the sending process
+lh21
+sr21
+
+lr81
+sdxx
+
+bu07  Wait for more input
+h
+
+brain04 CLIENT PROCESS I
+pe00   ENTER CRITICAL REGION
+ls00       Load and store the common address for message passing
+sr80
+ve00   EXIT CRITICAL REGION
+
+gp     Send my ID to input process
+sr50
+lr80
+sd00
+
+rc00   Recieve buffered input
+sd04   Send to output process and end
+h
+
+brain04 CLIENT PROCESS II
+pe00   ENTER CRITICAL REGION
+ls00       Load and store the common address for message passing
+sr80
+ve00   EXIT CRITICAL REGION
+
+gp     Send my ID to input process
+sr50
+lr80
+sd00
+
+rc00   Recieve buffered input
+sd04   Send to output process and end
+h
+
+brain04 CLIENT PROCESS III
+pe00   ENTER CRITICAL REGION
+ls00       Load and store the common address for message passing
+sr80
+ve00   EXIT CRITICAL REGION
+
+gp     Send my ID to input process
+sr50
+lr80
+sd00
+
+rc00   Recieve buffered input
+sd04   Send to output process and end
+h
+
+brain04 OUTPUT PROCESS
+pe00   ENTER CRITICAL REGION
+ls00       Load and store the common address for message passing
+sr80
+ve00   EXIT CRITICAL REGION
+
+lr80    Wait for message
+rcxx
+
+pd50    Print the sent message to the screen
+bu05    Wait for more input
+h
+
+data
+0050009000030001                        
+Process 0000is outputing this message!  
+end

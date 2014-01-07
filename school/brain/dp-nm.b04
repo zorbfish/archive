@@ -1,0 +1,199 @@
+brain04 PHILOSOPHER I		( MESSAGE PASSING NON-SOLUTION )
+pe00
+gd90
+lr90
+ss00
+ve00
+
+np    Think
+
+gp
+sr80
+lr90
+sd09  Take my left fork
+sd05  Take my right fork
+
+np    Eat
+
+rc09  Put down my left fork
+rc05  Put down my right fork
+
+h
+
+brain04 PHILOSOPHER II
+pe00
+ls00
+sr90
+ve00
+
+np    Think
+
+gp
+sr80
+lr90
+sd05  Take my left fork
+sd06  Take my right fork
+
+np    Eat
+
+rc05  Put down my left fork
+rc06  Put down my right fork
+
+h
+
+brain04 PHILOSOPHER III
+pe00
+ls00
+sr90
+ve00
+
+np    Think
+
+gp
+sr80
+lr90
+sd06  Take my left fork
+sd07  Take my right fork
+
+np    Eat
+
+rc06  Put down my left fork
+rc07  Put down my right fork
+
+h
+
+brain04 PHILOSOPHER IV
+pe00
+ls00
+sr90
+ve00
+
+np    Think
+
+gp
+sr80
+lr90
+sd07  Take my left fork
+sd08  Take my right fork
+
+np    Eat
+
+rc07  Put down my left fork
+rc08  Put down my right fork
+
+h
+
+brain04 PHILOSOPHER V
+pe00
+ls00
+sr90
+ve00
+
+np    Think
+
+gp
+sr80
+lr90
+sd08  Take my left fork
+sd09  Take my right fork
+
+np    Eat
+
+rc08  Put down my left fork
+rc09  Put down my right fork
+
+h
+
+brain04 FORK I
+pe00
+ls00
+sr90
+ve00
+
+lr90  Send any messages to address 80
+rcxx
+
+lr80  Load the philosopher ID that made contact with me
+lh10
+sr10
+lr90
+sdxx  Send the philosopher an acknowledgement message
+
+bu04
+h
+
+brain04 FORK II
+pe00
+ls00
+sr90
+ve00
+
+lr90  Send any messages to address 80
+rcxx
+
+lr80  Load the philosopher ID that made contact with me
+lh10
+sr10
+lr90
+sdxx  Send the philosopher an acknowledgement message
+
+bu04
+h
+
+brain04 FORK III
+pe00
+ls00
+sr90
+ve00
+
+lr90  Send any messages to address 80
+rcxx
+
+lr80  Load the philosopher ID that made contact with me
+lh10
+sr10
+lr90
+sdxx  Send the philosopher an acknowledgement message
+
+bu04
+h
+
+brain04 FORK IV
+pe00
+ls00
+sr90
+ve00
+
+lr90  Send any messages to address 80
+rcxx
+
+lr80  Load the philosopher ID that made contact with me
+lh10
+sr10
+lr90
+sdxx  Send the philosopher an acknowledgement message
+
+bu04
+h
+
+brain04 FORK V
+pe00
+ls00
+sr90
+ve00
+
+lr90  Send any messages to address 80
+rcxx
+
+lr80  Load the philosopher ID that made contact with me
+lh10
+sr10
+lr90
+sdxx  Send the philosopher an acknowledgement message
+
+bu04
+h
+
+data                                    data end
+0080                                    
+end

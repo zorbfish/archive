@@ -1,0 +1,72 @@
+brain04 PHILOSOPHER I           ( SEMAPHORE NON-SOLUTION )
+np    Think
+
+pe04  Take my left fork
+pe00  Take my right fork
+
+np    Eat
+
+ve04  Put down my left fork
+ve00  Put down my right fork
+
+bu00
+h
+
+brain04 PHILOSOPHER II
+np    Think
+
+pe00  Take my left fork
+pe01  Take my right fork
+
+np    Eat
+
+ve00  Put down my left fork
+ve01  Put down my right fork
+
+bu00
+h
+
+brain04 PHILOSOPHER III
+np    Think
+
+pe01  Take my left fork
+pe02  Take my right fork
+
+np    Eat
+
+ve01  Put down my left fork
+ve02  Put down my right fork
+
+bu00
+h
+
+brain04 PHILOSOPHER IV
+np    Think
+
+pe02  Take my left fork
+pe03  Take my right fork
+
+np    Eat
+
+ve02  Put down my left fork
+ve03  Put down my right fork
+
+bu00
+h
+
+brain04 PHILOSOPHER V
+np    Think
+
+pe03  Take my left fork
+pe04  Take my right fork
+
+np    Eat
+
+ve03  Put down my left fork
+ve04  Put down my right fork
+
+bu00
+h
+
+data
+end

@@ -1,0 +1,497 @@
+brain04 PHILOSOPHER I: PROCESS 0 ( MESSAGE PASSING NON-SOLUTION )
+pe00
+gd70
+lr70
+ss00
+lr71
+ss01
+lr72
+ss02
+ve00
+
+np    Think
+
+lr72  Try to take left fork
+sr80
+gp
+sr81
+lr70
+sd09
+rc09  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt09  True -> Wait
+
+lr72  Try to take right fork
+sr80
+gp
+sr81
+lr70
+sd05
+rc05  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt40  True -> Drop left fork again and Wait
+
+np    Eat
+
+lr71  Put down left fork
+sr80
+lr70
+sd09
+
+lr71  Put down right fork
+sr80
+lr70
+sd05
+bu45
+
+lr71  Put down left fork
+sr80
+lr70
+sd09
+bu09
+
+bu46  Loop back
+h
+
+brain04 PHILOSOPHER II: PROCESS I
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+np    Think
+
+lr72  Try to take left fork
+sr80
+gp
+sr81
+lr70
+sd05
+rc05  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt08  True -> Wait
+
+lr72  Try to take right fork
+sr80
+gp
+sr81
+lr70
+sd06
+rc06  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt39  True -> Drop left fork again and Wait
+
+np    Eat
+
+lr71  Put down left fork
+sr80
+lr70
+sd05
+
+lr71  Put down right fork
+sr80
+lr70
+sd06
+bu45
+
+lr71  Put down left fork
+sr80
+lr70
+sd05
+bu08
+
+bu46  Loop back
+h
+
+
+brain04 PHILOSOPHER III: PROCESS II
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+np    Think
+
+lr72  Try to take left fork
+sr80
+gp
+sr81
+lr70
+sd06
+rc06  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt08  True -> Wait
+
+lr72  Try to take right fork
+sr80
+gp
+sr81
+lr70
+sd07
+rc07  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt39  True -> Drop left fork again and Wait
+
+np    Eat
+
+lr71  Put down left fork
+sr80
+lr70
+sd06
+
+lr71  Put down right fork
+sr80
+lr70
+sd07
+bu45
+
+lr71  Put down left fork
+sr80
+lr70
+sd06
+bu08
+
+bu46  Loop back
+h
+
+
+brain04 PHILOSOPHER IV: PROCESS III
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+np    Think
+
+lr72  Try to take left fork
+sr80
+gp
+sr81
+lr70
+sd07
+rc07  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt08  True -> Wait
+
+lr72  Try to take right fork
+sr80
+gp
+sr81
+lr70
+sd08
+rc08  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt39  True -> Drop left fork again and Wait
+
+np    Eat
+
+lr71  Put down left fork
+sr80
+lr70
+sd07
+
+lr71  Put down right fork
+sr80
+lr70
+sd08
+bu45
+
+lr71  Put down left fork
+sr80
+lr70
+sd07
+bu08
+
+bu46  Loop back
+h
+
+
+brain04 PHILOSOPHER V: PROCESS IV
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+np    Think
+
+lr72  Try to take left fork
+sr80
+gp
+sr81
+lr70
+sd08
+rc08  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt08  True -> Wait
+
+lr72  Try to take right fork
+sr80
+gp
+sr81
+lr70
+sd09
+rc09  Get confirmation
+
+lr80  RetVal = No?
+ce71
+bt39  True -> Drop left fork again and Wait
+
+np    Eat
+
+lr71  Put down left fork
+sr80
+lr70
+sd08
+
+lr71  Put down right fork
+sr80
+lr70
+sd09
+bu45
+
+lr71  Put down left fork
+sr80
+lr70
+sd08
+bu08
+
+bu46  Loop back
+h
+
+brain04 FORK I: PROCESS V
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+lr70  Recieve any message
+rcxx
+
+lr80  Is message a request for use?
+ce72
+bt16  True -> Skip over drop
+
+lr71  I am no longer in use
+sr90
+bu28
+
+lr90  I am in use already?
+ce72
+bt21  True -> Skip updating my state
+
+lr72  I am now being used by a philosopher
+sr90
+
+lr90  Save my state in the return message
+sr80
+
+lr81  Send confirmation message to the sending philosopher
+lh27
+sr27
+lr70
+sdxx
+
+bu08
+h
+
+brain04 FORK II: PROCESS VI
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+lr70  Recieve any message
+rcxx
+
+lr80  Is message a request for use?
+ce72
+bt16  True -> Skip over drop
+
+lr71  I am no longer in use
+sr90
+bu28
+
+lr90  I am in use already?
+ce72
+bt21  True -> Skip updating my state
+
+lr72  I am now being used by a philosopher
+sr90
+
+lr90  Save my state in the return message
+sr80
+
+lr81  Send confirmation message to the sending philosopher
+lh27
+sr27
+lr70
+sdxx
+
+bu08
+h
+
+brain04 FORK III: PROCESS VII
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+lr70  Recieve any message
+rcxx
+
+lr80  Is message a request for use?
+ce72
+bt16  True -> Skip over drop
+
+lr71  I am no longer in use
+sr90
+bu28
+
+lr90  I am in use already?
+ce72
+bt21  True -> Skip updating my state
+
+lr72  I am now being used by a philosopher
+sr90
+
+lr90  Save my state in the return message
+sr80
+
+lr81  Send confirmation message to the sending philosopher
+lh27
+sr27
+lr70
+sdxx
+
+bu08
+h
+
+brain04 FORK IV: PROCESS VIII
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+lr70  Recieve any message
+rcxx
+
+lr80  Is message a request for use?
+ce72
+bt16  True -> Skip over drop
+
+lr71  I am no longer in use
+sr90
+bu28
+
+lr90  I am in use already?
+ce72
+bt21  True -> Skip updating my state
+
+lr72  I am now being used by a philosopher
+sr90
+
+lr90  Save my state in the return message
+sr80
+
+lr81  Send confirmation message to the sending philosopher
+lh27
+sr27
+lr70
+sdxx
+
+bu08
+h
+
+brain04 FORK V: PROCESS IX
+pe00
+ls00
+sr70
+ls01
+sr71
+ls02
+sr72
+ve00
+
+lr70  Recieve any message
+rcxx
+
+lr80  Is message a request for use?
+ce72
+bt16  True -> Skip over drop
+
+lr71  I am no longer in use
+sr90
+bu28
+
+lr90  I am in use already?
+ce72
+bt21  True -> Skip updating my state
+
+lr72  I am now being used by a philosopher
+sr90
+
+lr90  Save my state in the return message
+sr80
+
+lr81  Send confirmation message to the sending philosopher
+lh27
+sr27
+lr70
+sdxx
+
+bu08
+h
+
+data                                    data end
+008000000001                            
+end

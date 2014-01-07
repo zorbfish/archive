@@ -1,0 +1,383 @@
+brain04 INITIALIZER - Setups shared data and pumps input to sorting processes
+
+pe00    ENTER CRITICAL REGION
+
+gd70        Grab program data
+gd90
+
+lr70        Store all sharable data into memory
+ss00
+
+lr71
+ss01
+
+lr72
+ss02
+
+lr73
+ss03
+
+lr74
+ss04
+
+ve00    EXIT CRITICAL REGION
+
+lr70
+cl61
+bt35
+
+lr70
+ce61
+bt35
+
+lr73
+ad60
+lh24
+sr24
+
+lrXX    Load number into message
+sr80
+
+lr72    Send to sorting process
+sd02
+
+lr60
+ad71
+sr60
+
+lr70
+su71
+sr70
+
+bu14
+h
+
+brain04 OUTPUT - Outputs the buffered results
+
+pe00    ENTER CRITICAL REGION
+
+gd90
+
+ls00        Load total numbers to pass through this process
+sr70
+
+ls01        Load increment constant
+sr71
+
+ls02        Load message addresses
+sr72
+
+ls03
+sr73
+
+ve00    EXIT CRITICAL REGION
+
+lr70
+cl61
+bt32
+
+lr70
+ce61
+bt32
+
+lr72    Wait for last sorting process
+rc05    RECIEVE INPUT
+
+lr73
+ad60
+lh24
+sr24
+
+lr80    Place number into output
+srXX
+
+lr60
+ad71
+sr60
+
+lr70
+su71
+sr70
+
+bu11
+
+pd90    Output result
+h
+
+brain04 SORTING PROCESS I
+
+pe00    ENTER CRITICAL REGION
+
+ls00        Load total numbers to pass through this process
+sr70
+sr77
+
+ls01        Load increment constant
+sr71
+
+ls02        Load message addresses
+sr72
+
+ls03
+sr73
+
+ls04
+sr75
+
+ve00    EXIT CRITICAL REGION
+
+lr70    Numbers Left <= 0 ?
+cl61    If so send last item down pipe and finish executing.
+bt42
+
+lr70
+ce61
+bt42
+
+lr72    RECIEVE INPUT
+rc00
+
+lr80    New input < Stored Min?
+cl75
+bt27
+
+lr72
+sd03    SEND NEW INPUT
+bu38
+
+lr80    Set previously stored min as next item to pipe
+sr76    and store the new minimum value
+lr75
+sr80
+lr76
+sr75
+
+lr70
+ce77
+bt38
+
+lr72
+sd03    SEND THE NUMBER
+
+lr70    Numbers Left --
+su71
+sr70
+
+bu13    Continue Sorting
+
+lr75
+sr80
+lr72
+sd03    SEND THE LAST ITEM
+
+h
+
+brain04 SORTING PROCESS II
+
+pe00    ENTER CRITICAL REGION
+
+ls00        Load total numbers to pass through this process
+sr70
+sr77
+
+ls01        Load increment constant
+sr71
+
+ls02        Load message addresses
+sr72
+
+ls03
+sr73
+
+ls04
+sr75
+
+ve00    EXIT CRITICAL REGION
+
+lr70    Numbers Left <= 0 ?
+cl61    If so send last item down pipe and finish executing.
+bt42
+
+lr70
+ce61
+bt42
+
+lr72    RECIEVE INPUT
+rc02
+
+lr80    New input < Stored Min?
+cl75
+bt27
+
+lr72
+sd04    SEND NEW INPUT
+bu38
+
+lr80    Set previously stored min as next item to pipe
+sr76    and store the new minimum value
+lr75
+sr80
+lr76
+sr75
+
+lr70
+ce77
+bt38
+
+lr72
+sd04    SEND THE NUMBER
+
+lr70    Numbers Left --
+su71
+sr70
+
+bu13    Continue Sorting
+
+lr75
+sr80
+lr72
+sd04    SEND THE LAST ITEM
+
+h
+
+brain04 SORTING PROCESS III
+
+pe00    ENTER CRITICAL REGION
+
+ls00        Load total numbers to pass through this process
+sr70
+sr77
+
+ls01        Load increment constant
+sr71
+
+ls02        Load message addresses
+sr72
+
+ls03
+sr73
+
+ls04
+sr75
+
+ve00    EXIT CRITICAL REGION
+
+lr70    Numbers Left <= 0 ?
+cl61    If so send last item down pipe and finish executing.
+bt42
+
+lr70
+ce61
+bt42
+
+lr72    RECIEVE INPUT
+rc03
+
+lr80    New input < Stored Min?
+cl75
+bt27
+
+lr72
+sd05    SEND NEW INPUT
+bu38
+
+lr80    Set previously stored min as next item to pipe
+sr76    and store the new minimum value
+lr75
+sr80
+lr76
+sr75
+
+lr70
+ce77
+bt38
+
+lr72
+sd05    SEND THE NUMBER
+
+lr70    Numbers Left --
+su71
+sr70
+
+bu13    Continue Sorting
+
+lr75
+sr80
+lr72
+sd05    SEND THE LAST ITEM
+
+h
+
+brain04 SORTING PROCESS IV
+
+pe00    ENTER CRITICAL REGION
+
+ls00        Load total numbers to pass through this process
+sr70
+sr77
+
+ls01        Load increment constant
+sr71
+
+ls02        Load message addresses
+sr72
+
+ls03
+sr73
+
+ls04
+sr75
+
+ve00    EXIT CRITICAL REGION
+
+lr70    Numbers Left <= 0 ?
+cl61    If so send last item down pipe and finish executing.
+bt42
+
+lr70
+ce61
+bt42
+
+lr72    RECIEVE INPUT
+rc04
+
+lr80    New input < Stored Min?
+cl75
+bt27
+
+lr72
+sd01    SEND NEW INPUT
+bu38
+
+lr80    Set previously stored min as next item to pipe
+sr76    and store the new minimum value
+lr75
+sr80
+lr76
+sr75
+
+lr70
+ce77
+bt38
+
+lr72
+sd01    SEND THE NUMBER
+
+lr70    Numbers Left --
+su71
+sr70
+
+bu13    Continue Sorting
+
+lr75
+sr80
+lr72
+sd01    SEND THE LAST ITEM
+
+h
+
+data                                    data end
+00050001008000909999                    Numbers to sort | Increment constant | Message Address
+00200010000700350090                    The actual data array to sort
+                                        Output slot
+end

@@ -1,0 +1,340 @@
+brain04 INITIALIZER ( Dining Philosophers Semaphore Solution )
+pe06  ENTER CRITICAL REGION
+gd90      Extract Philosopher state constants and place them in shared memory
+lr90
+ss90
+lr91
+ss91
+lr92
+ss92
+ve06  EXIT CRITICAL REGION
+h
+
+brain04 PHILOSOPHER I: Process 1
+pe06  ENTER CRITICAL REGION
+ls90      Extract state constants from shared memory
+sr90
+ls91
+sr91
+ls92
+sr92
+ve06  EXIT CRITICAL REGION
+
+np    I am thinking
+
+pe06  ENTER CRITICAL REGION
+lr91      I am hungry
+ss01
+ls01      Is my state set to hungry?
+ce91          True -> Check next condition
+bt16          False -> Exit this conditional
+bu25
+ls05      Is my left neighbor eating?
+ce92          True -> Exit this conditional
+bt25
+ls02      Is my right neighbor eating?
+ce92          True-> Exit this conditional
+bt25
+lr92      Get ready to eat
+ss01
+ve01      Up on my semaphore
+ve06  EXIT CRITICAL REGION
+pe01  Down on my semaphore
+
+np    I am eating
+
+pe06  ENTER CRITICAL REGION
+lr90      Start thinking
+ss01
+ls05      PERFORMING TEST ON MY LEFT NEIGHBOR: Process 5
+ce91          Is my state set to hungry?
+bt35              True -> Check next condition
+bu44              False -> Exit this conditional
+ls04          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt44
+ls01          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt44
+lr92          Get ready to eat
+ss05
+ve05          Up on my semaphore
+ls02      PERFORMING TEST ON MY RIGHT NEIGHBOR: Process 2
+ce91          Is my state set to hungry?
+bt48              True -> Check next condition
+bu57              False -> Exit this conditional
+ls01          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt57
+ls03          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt57
+lr92          Get ready to eat
+ss02
+ve02          Up on my semaphore
+ve06  EXIT CRITICAL REGION
+h
+
+brain04 PHILOSOPHER II: Process 2
+pe06  ENTER CRITICAL REGION
+ls90      Extract state constants from shared memory
+sr90
+ls91
+sr91
+ls92
+sr92
+ve06  EXIT CRITICAL REGION
+
+np    I am thinking
+
+pe06  ENTER CRITICAL REGION
+lr91      I am hungry
+ss02
+ls02      Is my state set to hungry?
+ce91          True -> Check next condition
+bt16          False -> Exit this conditional
+bu25
+ls01      Is my left neighbor eating?
+ce92          True -> Exit this conditional
+bt25
+ls03      Is my right neighbor eating?
+ce92          True-> Exit this conditional
+bt25
+lr92      Get ready to eat
+ss02
+ve02      Up on my semaphore
+ve06  EXIT CRITICAL REGION
+pe02  Down on my semaphore
+
+np    I am eating
+
+pe06  ENTER CRITICAL REGION
+lr90      Start thinking
+ss01
+ls01      PERFORMING TEST ON MY LEFT NEIGHBOR: Process 1
+ce91          Is my state set to hungry?
+bt35              True -> Check next condition
+bu44              False -> Exit this conditional
+ls05          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt44
+ls02          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt44
+lr92          Get ready to eat
+ss01
+ve01          Up on my semaphore
+ls03      PERFORMING TEST ON MY RIGHT NEIGHBOR: Process 3
+ce91          Is my state set to hungry?
+bt48              True -> Check next condition
+bu57              False -> Exit this conditional
+ls02          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt57
+ls04          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt57
+lr92          Get ready to eat
+ss03
+ve03          Up on my semaphore
+ve06  EXIT CRITICAL REGION
+h
+
+brain04 PHILOSOPHER III: Process 3
+pe06  ENTER CRITICAL REGION
+ls90      Extract state constants from shared memory
+sr90
+ls91
+sr91
+ls92
+sr92
+ve06  EXIT CRITICAL REGION
+
+np    I am thinking
+
+pe06  ENTER CRITICAL REGION
+lr91      I am hungry
+ss03
+ls03      Is my state set to hungry?
+ce91          True -> Check next condition
+bt16          False -> Exit this conditional
+bu25
+ls02      Is my left neighbor eating?
+ce92          True -> Exit this conditional
+bt25
+ls04      Is my right neighbor eating?
+ce92          True-> Exit this conditional
+bt25
+lr92      Get ready to eat
+ss03
+ve03      Up on my semaphore
+ve06  EXIT CRITICAL REGION
+pe03  Down on my semaphore
+
+np    I am eating
+
+pe06  ENTER CRITICAL REGION
+lr90      Start thinking
+ss03
+ls02      PERFORMING TEST ON MY LEFT NEIGHBOR: Process 2
+ce91          Is my state set to hungry?
+bt35              True -> Check next condition
+bu44              False -> Exit this conditional
+ls01          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt44
+ls03          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt44
+lr92          Get ready to eat
+ss02
+ve02          Up on my semaphore
+ls04      PERFORMING TEST ON MY RIGHT NEIGHBOR: Process 4
+ce91          Is my state set to hungry?
+bt48              True -> Check next condition
+bu57              False -> Exit this conditional
+ls03          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt57
+ls05          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt57
+lr92          Get ready to eat
+ss04
+ve04          Up on my semaphore
+ve06  EXIT CRITICAL REGION
+h
+
+brain04 PHILOSOPHER IV: Process 4
+pe06  ENTER CRITICAL REGION
+ls90      Extract state constants from shared memory
+sr90
+ls91
+sr91
+ls92
+sr92
+ve06  EXIT CRITICAL REGION
+
+np    I am thinking
+
+pe06  ENTER CRITICAL REGION
+lr91      I am hungry
+ss04
+ls04      Is my state set to hungry?
+ce91          True -> Check next condition
+bt16          False -> Exit this conditional
+bu25
+ls03      Is my left neighbor eating?
+ce92          True -> Exit this conditional
+bt25
+ls05      Is my right neighbor eating?
+ce92          True-> Exit this conditional
+bt25
+lr92      Get ready to eat
+ss04
+ve04      Up on my semaphore
+ve06  EXIT CRITICAL REGION
+pe04  Down on my semaphore
+
+np    I am eating
+
+pe06  ENTER CRITICAL REGION
+lr90      Start thinking
+ss04
+ls03      PERFORMING TEST ON MY LEFT NEIGHBOR: Process 3
+ce91          Is my state set to hungry?
+bt35              True -> Check next condition
+bu44              False -> Exit this conditional
+ls02          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt44
+ls04          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt44
+lr92          Get ready to eat
+ss03
+ve03          Up on my semaphore
+ls05      PERFORMING TEST ON MY RIGHT NEIGHBOR: Process 5
+ce91          Is my state set to hungry?
+bt48              True -> Check next condition
+bu57              False -> Exit this conditional
+ls04          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt57
+ls01          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt57
+lr92          Get ready to eat
+ss05
+ve05          Up on my semaphore
+ve06  EXIT CRITICAL REGION
+h
+
+brain04 PHILOSOPHER V: Process 5
+pe06  ENTER CRITICAL REGION
+ls90      Extract state constants from shared memory
+sr90
+ls91
+sr91
+ls92
+sr92
+ve06  EXIT CRITICAL REGION
+
+np    I am thinking
+
+pe06  ENTER CRITICAL REGION
+lr91      I am hungry
+ss05
+ls05      Is my state set to hungry?
+ce91          True -> Check next condition
+bt16          False -> Exit this conditional
+bu25
+ls04      Is my left neighbor eating?
+ce92          True -> Exit this conditional
+bt25
+ls01      Is my right neighbor eating?
+ce92          True-> Exit this conditional
+bt25
+lr92      Get ready to eat
+ss05
+ve05      Up on my semaphore
+ve06  EXIT CRITICAL REGION
+pe05  Down on my semaphore
+
+np    I am eating
+
+pe06  ENTER CRITICAL REGION
+lr90      Start thinking
+ss05
+ls04      PERFORMING TEST ON MY LEFT NEIGHBOR: Process 4
+ce91          Is my state set to hungry?
+bt35              True -> Check next condition
+bu44              False -> Exit this conditional
+ls03          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt44
+ls05          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt44
+lr92          Get ready to eat
+ss04
+ve04          Up on my semaphore
+ls01      PERFORMING TEST ON MY RIGHT NEIGHBOR: Process 1
+ce91          Is my state set to hungry?
+bt48              True -> Check next condition
+bu57              False -> Exit this conditional
+ls05          Is my left neighbor eating?
+ce92              True -> Exit this conditional
+bt57
+ls02          Is my right neighbor eating?
+ce92              True-> Exit this conditional
+bt57
+lr92          Get ready to eat
+ss01
+ve01          Up on my semaphore
+ve06  EXIT CRITICAL REGION
+h
+
+data                                    data end
+000000010002                            Potential Philosopher States -  Thinking | Hungry | Eating
+end
